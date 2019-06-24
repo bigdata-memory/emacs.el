@@ -502,3 +502,5 @@ narrowed."
   :config
   (load-theme 'zenburn t)
   )
+
+(setq w32-alt-is-meta nil)
