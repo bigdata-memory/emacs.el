@@ -1,4 +1,10 @@
 ;; selectively copied from https://github.com/howardabrams/dot-files/blob/master/emacs.org
+;; put following commented code into .emacs for init.el loading at startup
+;; (setq custom-file "~/.emacs.d/init.el")
+;; (when (file-exists-p custom-file)
+;;   (load custom-file))
+
+
 
 (setq gc-cons-threshold 50000000)
 
