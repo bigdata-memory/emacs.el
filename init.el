@@ -510,3 +510,5 @@ narrowed."
   )
 
 (setq w32-alt-is-meta nil)
+
+(global-visual-line-mode t)
