@@ -509,6 +509,14 @@ narrowed."
   (load-theme 'zenburn t)
   )
 
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+
 (setq w32-alt-is-meta nil)
 
 (global-visual-line-mode t)
