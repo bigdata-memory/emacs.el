@@ -3,7 +3,10 @@
 ;;(setq url-proxy-services
 ;;   '(("no_proxy" . "^\\(localhost\\|10\\..*\\|192\\.168\\..*\\)")
 ;;     ("http" . "proxy.com:8080")
-;;     ("https" . "proxy.com:8080")))
+;;     ("https" . "proxy.com:8080")
+;;     ("ftp" . "proxy.com:8080")
+;;    )
+;;)
 ;; (setq custom-file "~/.emacs.d/init.el")
 ;; (when (file-exists-p custom-file)
 ;;   (load custom-file))
@@ -16,10 +19,9 @@
 
 (require 'package)
 
-(setq package-archives '(("org"       . "http://orgmode.org/elpa/")
-                         ("gnu"       . "http://elpa.gnu.org/packages/")
+(setq package-archives '(("gnu"       . "http://elpa.gnu.org/packages/")
                          ("melpa"     . "http://melpa.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")))
+                        ))
 
 (package-initialize)
 (package-refresh-contents)
@@ -384,7 +386,7 @@ narrowed."
     (add-hook hook (lambda () (flyspell-mode -1))))
 
   :config
-  (setq ispell-program-name "/usr/local/bin/aspell"
+  (setq ispell-program-name "/usr/bin/aspell"
         ispell-local-dictionary "en_US"
         ispell-dictionary "american" ; better for aspell
         ispell-extra-args '("--sug-mode=ultra" "--lang=en_US")
