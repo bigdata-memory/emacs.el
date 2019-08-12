@@ -1,5 +1,9 @@
 ;; selectively copied from https://github.com/howardabrams/dot-files/blob/master/emacs.org
 ;; put following commented code into .emacs for init.el loading at startup
+;;(setq url-proxy-services
+;;   '(("no_proxy" . "^\\(localhost\\|10\\..*\\|192\\.168\\..*\\)")
+;;     ("http" . "proxy.com:8080")
+;;     ("https" . "proxy.com:8080")))
 ;; (setq custom-file "~/.emacs.d/init.el")
 ;; (when (file-exists-p custom-file)
 ;;   (load custom-file))
