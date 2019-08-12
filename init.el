@@ -445,7 +445,7 @@ narrowed."
                       (linum-mode -1))
           (t          (fringe-mode '(8 . 0))
                       (linum-mode 1))))
-
+  (setq linum-format "%4d \u2502 ")
   :bind (("A-C-k"   . linum-mode)
          ("s-C-k"   . linum-mode)
          ("A-C-M-k" . linum-fringe-toggle)
