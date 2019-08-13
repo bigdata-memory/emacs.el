@@ -246,15 +246,16 @@ narrowed."
   :ensure t
   :init (setq avy-background t))
 
-(global-set-key (kbd "s-h") 'avy-goto-char-timer)
-(global-set-key (kbd "s-j") 'avy-goto-char-timer)
-(global-set-key (kbd "s-H") 'avy-pop-mark)
-(global-set-key (kbd "s-J") 'avy-pop-mark)
-(global-set-key (kbd "A-h") 'avy-goto-char-timer)
-(global-set-key (kbd "A-j") 'avy-goto-char-timer)
-(global-set-key (kbd "A-H") 'avy-pop-mark)
-(global-set-key (kbd "A-J") 'avy-pop-mark)
 
+;; (global-set-key (kbd "s-h") 'avy-goto-char-timer)
+;; (global-set-key (kbd "s-j") 'avy-goto-char-timer)
+;; (global-set-key (kbd "s-H") 'avy-pop-mark)
+;; (global-set-key (kbd "s-J") 'avy-pop-mark)
+;; (global-set-key (kbd "A-h") 'avy-goto-char-timer)
+;; (global-set-key (kbd "A-j") 'avy-goto-char-timer)
+;; (global-set-key (kbd "A-H") 'avy-pop-mark)
+;; (global-set-key (kbd "A-J") 'avy-pop-mark)
+(global-set-key (kbd "M-g '") 'avy-goto-char-timer)
 
 (defun unfill-paragraph ()
   "Convert a multi-line paragraph into a single line of text."
@@ -523,6 +524,6 @@ narrowed."
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
-(setq w32-alt-is-meta nil)
+;; (setq w32-alt-is-meta nil)
 
 (global-visual-line-mode t)
