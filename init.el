@@ -530,6 +530,7 @@ narrowed."
 ;;;
 
 (use-package web-mode
+  :ensure t
   :mode (("\\.html$" . web-mode)
          ("\\.jsx?$" . web-mode)) ;; auto-enable for .js/.jsx files
   :init
@@ -543,6 +544,7 @@ narrowed."
   (add-hook 'web-mode-hook 'electric-pair-mode))
 
 (use-package web-beautify
+  :ensure t
   :commands (web-beautify-css
              web-beautify-css-buffer
              web-beautify-html
@@ -565,6 +567,7 @@ narrowed."
 ;; (define-key html-mode-map (kbd "C-c C-w") 'surround-html)
 
 (use-package emmet-mode
+  :ensure t
   :diminish (emmet-mode . "ε")
   :bind* (("C-)" . emmet-next-edit-point)
           ("C-(" . emmet-prev-edit-point))
@@ -580,21 +583,23 @@ narrowed."
   (add-hook 'web-mode-hook 'emmet-mode))
 
 (use-package nginx-mode
+  :ensure t
   :commands (nginx-mode))
 
 (use-package json-mode
+  :ensure t
   :mode "\\.json\\'"
   :config
   (bind-key "{" #'paredit-open-curly json-mode-map)
   (bind-key "}" #'paredit-close-curly json-mode-map))
 
 ;; (use-package css-eldoc
+;;   :ensure t
 ;;   :config
 ;;   (progn
 ;;     (add-hook 'css-mode-hook 'turn-on-css-eldoc)
 ;;     (add-hook 'scss-mode-hook 'turn-on-css-eldoc)
 ;;     (add-hook 'less-css-mode-hook 'turn-on-css-eldoc)))
-
 
 (provide 'init-web)
 ;;; init-web.el ends here
