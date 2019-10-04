@@ -45,8 +45,10 @@
 (use-package f
   :ensure t)
 
+(setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
-(setq tab-width 2)
+(setq-default c-default-style "linux")
+(setq-default c-basic-offset 4)
 
 (setq-default tab-always-indent 'complete)
 
