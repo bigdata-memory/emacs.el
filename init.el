@@ -522,7 +522,7 @@ narrowed."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (zenburn-theme gitignore-mode gitconfig-mode git-gutter-fringe flycheck smartscan linum-relative yasnippet helm-swoop helm smex ido-vertical-mode flx-ido workgroups persp-projectile perspective projectile which-key use-package fancy-narrow f ace-window))))
+    (json-mode nginx-mode emmet-mode web-beautify web-mode markdown-mode zenburn-theme gitignore-mode gitconfig-mode git-gutter-fringe flycheck smartscan linum-relative yasnippet helm-swoop helm smex ido-vertical-mode flx-ido workgroups persp-projectile perspective projectile which-key use-package fancy-narrow f ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
