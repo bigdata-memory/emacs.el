@@ -626,6 +626,7 @@ narrowed."
 ;; (setq w32-alt-is-meta nil)
 
 (global-visual-line-mode t)
+(setq column-number-mode t)
 
 (setq python-shell-interpreter "python3")
 (setq flycheck-python-pycompile-executable "python3"
