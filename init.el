@@ -31,6 +31,10 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+  (when (file-exists-p custom-file)
+    (load custom-file :noerror))
+
 (require 'use-package)
 
 (require 'cl)
@@ -514,21 +518,6 @@ narrowed."
 
 (use-package gitignore-mode
   :ensure t)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (json-mode nginx-mode emmet-mode web-beautify web-mode markdown-mode zenburn-theme gitignore-mode gitconfig-mode git-gutter-fringe flycheck smartscan linum-relative yasnippet helm-swoop helm smex ido-vertical-mode flx-ido workgroups persp-projectile perspective projectile which-key use-package fancy-narrow f ace-window))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 (use-package zenburn-theme
   :ensure t
