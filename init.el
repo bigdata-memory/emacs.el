@@ -609,6 +609,29 @@ narrowed."
     (add-hook 'python-mode-hook 'highlight-indentation-mode)
     (add-hook 'python-mode-hook 'set-hl-indent-color)))
 
+(use-package tuareg
+   :ensure t
+   :config
+   (add-hook 'tuareg-mode-hook #'electric-pair-local-mode)
+   ;; (add-hook 'tuareg-mode-hook 'tuareg-imenu-set-imenu)
+   (setq auto-mode-alist
+       (append '(("\\.ml[ily]?$" . tuareg-mode)
+          ("\\.topml$" . tuareg-mode))
+          auto-mode-alist)))
+;; Merlin configuration
+(use-package merlin
+   :ensure t
+   :config
+   (add-hook 'tuareg-mode-hook 'merlin-mode)
+   (add-hook 'merlin-mode-hook #'company-mode)
+   (setq merlin-error-after-save nil))
+;; utop configuration
+(use-package utop
+   :ensure t
+   :config
+   (autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
+   (add-hook 'tuareg-mode-hook 'utop-minor-mode)))
+
 ;; (use-package css-eldoc
 ;;   :ensure t
 ;;   :config
