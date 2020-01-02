@@ -630,7 +630,7 @@ narrowed."
    :ensure t
    :config
    (autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
-   (add-hook 'tuareg-mode-hook 'utop-minor-mode)))
+   (add-hook 'tuareg-mode-hook 'utop-minor-mode))
 
 ;; (use-package css-eldoc
 ;;   :ensure t
@@ -653,7 +653,22 @@ narrowed."
       flycheck-python-pylint-executable "python3"
       flycheck-python-flake8-executable "python3")
 
-(menu-bar-mode -1)
-(setq display-time-format "%I:%M:%S")
-(setq display-time-day-and-date t)
-(display-time-mode 1)
+(defun my-frame-tweaks (&optional frame)
+  "My personal frame tweaks."
+  (unless frame
+    (setq frame (selected-frame)))
+  (when frame
+    (with-selected-frame frame
+      (tool-bar-mode -1)
+      (menu-bar-mode -1)
+      (setq display-time-format "%I:%M:%S")
+      (setq display-time-day-and-date t)
+      (display-time-mode 1))))
+
+;; For the case that the init file runs after the frame has been created.
+;; Call of emacs without --daemon option.
+(my-frame-tweaks) 
+;; For the case that the init file runs before the frame is created.
+;; Call of emacs with --daemon option.
+(add-hook 'after-make-frame-functions #'my-frame-tweaks t)
+
