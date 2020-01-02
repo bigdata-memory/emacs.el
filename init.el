@@ -601,13 +601,13 @@ narrowed."
   (bind-key "{" #'paredit-open-curly json-mode-map)
   (bind-key "}" #'paredit-close-curly json-mode-map))
 
-(use-package highlight-indentation
-  :init
-  (progn
-    (defun set-hl-indent-color ()
-      (set-face-background 'highlight-indentation-face "#e3e3d3"))
-    (add-hook 'python-mode-hook 'highlight-indentation-mode)
-    (add-hook 'python-mode-hook 'set-hl-indent-color)))
+;(use-package highlight-indentation
+;  :init
+;  (progn
+;    (defun set-hl-indent-color ()
+;      (set-face-background 'highlight-indentation-face "#e3e3d3"))
+;    (add-hook 'python-mode-hook 'highlight-indentation-mode)
+;    (add-hook 'python-mode-hook 'set-hl-indent-color)))
 
 (use-package tuareg
    :ensure t
