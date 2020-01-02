@@ -652,3 +652,8 @@ narrowed."
 (setq flycheck-python-pycompile-executable "python3"
       flycheck-python-pylint-executable "python3"
       flycheck-python-flake8-executable "python3")
+
+(menu-bar-mode -1)
+(setq display-time-format "%I:%M:%S")
+(setq display-time-day-and-date t)
+(display-time-mode 1)
