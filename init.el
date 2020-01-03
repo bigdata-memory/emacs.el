@@ -92,17 +92,43 @@
                   (ggtags-mode 1)))))
 
 (use-package whitespace
-  :bind ("C-c T w" . whitespace-mode)
+  :ensure t
   :init
-  (setq whitespace-line-column nil
-        whitespace-display-mappings '((space-mark 32 [183] [46])
-                                      (newline-mark 10 [9166 10])
-                                      (tab-mark 9 [9654 9] [92 9])))
+  (global-whitespace-mode)
   :config
-  (set-face-attribute 'whitespace-space       nil :foreground "#666666" :background nil)
-  (set-face-attribute 'whitespace-newline     nil :foreground "#666666" :background nil)
-  (set-face-attribute 'whitespace-indentation nil :foreground "#666666" :background nil)
-  :diminish whitespace-mode)
+  (setq whitespace-style '(face
+                           trailing
+                           tabs
+                           spaces
+                           empty
+                           space-mark
+                           tab-mark
+                           ))
+  (setq whitespace-display-mappings
+        '((space-mark ?\u3000 [?\u25a1])
+          ;; WARNING: the mapping below has a problem.
+          ;; When a TAB occupies exactly one column, it will display the
+          ;; character ?\xBB at that column followed by a TAB which goes to
+          ;; the next TAB column.
+          ;; If this is a problem for you, please, comment the line below.
+          (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t])))
+  ;; only full-width space
+  (setq whitespace-space-regexp "\\(\u3000+\\)")
+  (defvar my/bg-color "#232323")
+  (set-face-attribute 'whitespace-trailing nil
+                      :background my/bg-color
+                      :foreground "DeepPink"
+                      :underline t)
+  (set-face-attribute 'whitespace-tab nil
+                      :background my/bg-color
+                      :foreground "LightSkyBlue"
+                      :underline nil)
+  (set-face-attribute 'whitespace-space nil
+                      :background my/bg-color
+                      :foreground "GreenYellow"
+                      :weight 'bold)
+  (set-face-attribute 'whitespace-empty nil
+                      :background my/bg-color))
 
 (use-package fill
   :bind (("C-c T f" . auto-fill-mode)
@@ -668,7 +694,7 @@ narrowed."
 
 ;; For the case that the init file runs after the frame has been created.
 ;; Call of emacs without --daemon option.
-(my-frame-tweaks) 
+(my-frame-tweaks)
 ;; For the case that the init file runs before the frame is created.
 ;; Call of emacs with --daemon option.
 (add-hook 'after-make-frame-functions #'my-frame-tweaks t)
