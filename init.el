@@ -49,8 +49,8 @@
 (use-package f
   :ensure t)
 
-(setq-default tab-width 4)
-(setq-default indent-tabs-mode nil)
+;(setq-default tab-width 4)
+;(setq-default indent-tabs-mode nil)
 (setq-default c-default-style "linux")
 (setq-default c-basic-offset 4)
 
@@ -72,7 +72,7 @@
     (horizontal-scroll-bar-mode -1))
   (scroll-bar-mode -1))            ;; Scrollbars are waste screen estate
 
-(set-face-background 'region "blue3")
+;(set-face-background 'region "blue3")
 
 ;; GNU Global Tags
 (use-package ggtags
@@ -519,11 +519,11 @@ narrowed."
 (use-package gitignore-mode
   :ensure t)
 
-(use-package zenburn-theme
-  :ensure t
-  :config
-  (load-theme 'zenburn t)
-  )
+;(use-package zenburn-theme
+;  :ensure t
+;  :config
+;  (load-theme 'zenburn t)
+;  )
 
 (use-package markdown-mode
   :ensure t
@@ -663,7 +663,8 @@ narrowed."
       (menu-bar-mode -1)
       (setq display-time-format "%I:%M:%S")
       (setq display-time-day-and-date t)
-      (display-time-mode 1))))
+      (display-time-mode 1)
+      (load-theme 'tango-dark))))
 
 ;; For the case that the init file runs after the frame has been created.
 ;; Call of emacs without --daemon option.
