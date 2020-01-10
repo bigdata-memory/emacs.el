@@ -671,6 +671,11 @@ narrowed."
 
 ;; (setq w32-alt-is-meta nil)
 
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable))
+
 (global-visual-line-mode t)
 (setq column-number-mode t)
 
