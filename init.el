@@ -692,6 +692,13 @@ narrowed."
 
 ;; (setq w32-alt-is-meta nil)
 
+(use-package virtualenvwrapper
+  :ensure t)
+
+;; pip install --user rope flake8 importmagic autopep8 yapf ipdb ipython virtualenv virtualenvwrapper
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "-i --simple-prompt")
+
 (use-package elpy
   :ensure t
   :init
