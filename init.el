@@ -131,6 +131,7 @@
                       :background my/bg-color))
 
 (use-package fill
+  :ensure t
   :bind (("C-c T f" . auto-fill-mode)
          ("C-c T t" . toggle-truncate-lines))
   :init (add-hook 'org-mode-hook 'turn-on-auto-fill)
@@ -413,6 +414,7 @@ narrowed."
    ("M-s S" . helm-multi-swoop)))
 
 (use-package recentf
+  :ensure t
   :init
   (setq recentf-max-menu-items 25
         recentf-auto-cleanup 'never
@@ -446,45 +448,8 @@ narrowed."
                                       t ; Many other characters
                                       ("-d" "en_US") nil utf-8))))
 
-(use-package flyspell
-  :config
-  (defun flyspell-detect-ispell-args (&optional run-together)
-    "if RUN-TOGETHER is true, spell check the CamelCase words."
-    (let (args)
-      (setq args (list "--sug-mode=ultra" "--lang=en_US"))
-      (if run-together
-          (setq args (append args '("--run-together" "--run-together-limit=5" "--run-together-min=2"))))
-      args))
-
-  ;; ispell-cmd-args is useless, it's the list of *extra* arguments we will append to the ispell process when "ispell-word" is called.
-  ;; ispell-extra-args is the command arguments which will *always* be used when start ispell process
-  (setq-default ispell-extra-args (flyspell-detect-ispell-args t))
-
-  (defadvice ispell-word (around my-ispell-word activate)
-    (let ((old-ispell-extra-args ispell-extra-args))
-      (ispell-kill-ispell t)
-      (setq ispell-extra-args (flyspell-detect-ispell-args))
-      ad-do-it
-      (setq ispell-extra-args old-ispell-extra-args)
-      (ispell-kill-ispell t)))
-
-  (defadvice flyspell-auto-correct-word (around my-flyspell-auto-correct-word activate)
-    (let ((old-ispell-extra-args ispell-extra-args))
-      (ispell-kill-ispell t)
-      ;; use emacs original arguments
-      (setq ispell-extra-args (flyspell-detect-ispell-args))
-      ad-do-it
-      ;; restore our own ispell arguments
-      (setq ispell-extra-args old-ispell-extra-args)
-      (ispell-kill-ispell t)))
-
-  (defun text-mode-hook-setup ()
-    ;; Turn off RUN-TOGETHER option when spell check text-mode
-    (setq-local ispell-extra-args (flyspell-detect-ispell-args)))
-
-  (add-hook 'text-mode-hook 'text-mode-hook-setup))
-
 (use-package linum
+  :ensure t
   :init
   (add-hook 'prog-mode-hook 'linum-mode)
   (add-hook 'linum-mode-hook (lambda () (set-face-attribute 'linum nil :height 110)))
