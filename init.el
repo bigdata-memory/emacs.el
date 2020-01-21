@@ -130,13 +130,6 @@
   (set-face-attribute 'whitespace-empty nil
                       :background my/bg-color))
 
-(use-package fill
-  :ensure t
-  :bind (("C-c T f" . auto-fill-mode)
-         ("C-c T t" . toggle-truncate-lines))
-  :init (add-hook 'org-mode-hook 'turn-on-auto-fill)
-  :diminish auto-fill-mode)
-
 (use-package which-key
   :ensure t
   :defer 10
