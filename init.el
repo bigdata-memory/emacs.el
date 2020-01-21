@@ -516,8 +516,9 @@ narrowed."
   :bind ("A-k" . linum-new-mode)
   ("s-k" . linum-new-mode))   ;; For Linux
 
-(use-package smart-comment
-  :bind ("M-;" . smart-comment))
+(use-package comment-dwim-2
+  :ensure t
+  :bind ("M-;" . comment-dwim-2))
 
 (use-package smartscan
   :ensure t
