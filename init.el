@@ -631,6 +631,32 @@ narrowed."
         ("C-c a" . org-agenda)
         ("C-c c" . org-capture)
   :config (progn
+            (setq org-babel-load-languages '((shell . t) (emacs-lisp . t) (dot . t) (python . t)))
+            (setq org-catch-invisible-edits 'show-and-error)
+            (setq org-cycle-separator-lines 0)
+            (setq org-directory "~/org")
+
+            (setq org-default-notes-file (expand-file-name "inbox.org" org-directory))
+            (setq org-default-calendar-file (expand-file-name "schplaf.org" org-directory))
+            (setq org-default-gtd-file (expand-file-name "gtd.org" org-directory))
+            (setq org-default-someday-file (expand-file-name "someday.org" org-directory))
+            (setq org-default-tickler-file (expand-file-name "tickler.org" org-directory))
+            (setq org-agenda-files `(,org-default-notes-file
+                                     ,org-default-calendar-file
+                                     ,org-default-gtd-file
+                                     ,org-default-tickler-file))
+
+            (setq org-refile-targets `((,org-default-notes-file :level . 1)
+                                       (,org-default-gtd-file :maxlevel . 3)
+                                       (,org-default-someday-file :level . 1)
+                                       (,org-default-tickler-file :maxlevel . 2)))
+
+            (setq org-capture-templates
+                  '(("t" "Todo" entry (file+headline org-default-notes-file "Inbox") "* TODO %?%i")
+                    ("l" "Todo + link" entry (file+headline org-default-notes-file "Inbox") "* TODO %? %a")
+                    ("p" "Appt" entry (file org-default-calendar-file) "* %?\n%^T")
+                    ("T" "Tickler" entry (file+headline org-default-tickler-file "Tickler") "* %i%? \nSCHEDULED: %^t")))
+
              (setq org-todo-keywords
                 '(
                   (sequence "IDEA(i)" "TODO(t)" "STARTED(s)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)")
