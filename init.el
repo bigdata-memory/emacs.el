@@ -1,5 +1,6 @@
 ;; selectively copied from https://github.com/howardabrams/dot-files/blob/master/emacs.org
 ;; put following commented code into .emacs if exists for init.el loading at startup
+;; ;; please don't use the following setting if env variable http_proxy etc. correctly set up
 ;;(setq url-proxy-services
 ;;   '(("no_proxy" . "^\\(localhost\\|10\\..*\\|192\\.168\\..*\\)")
 ;;     ("http" . "proxy.com:8080")
@@ -7,11 +8,13 @@
 ;;     ("ftp" . "proxy.com:8080")
 ;;    )
 ;;)
+;; ;; (setq url-gateway-method 'socks)
+;; ;; (setq socks-server '("Default server" "127.0.0.1" 1080 5))
 ;; (setq custom-file "~/.emacs.d/init.el")
 ;; (when (file-exists-p custom-file)
 ;;   (load custom-file))
-;; put the following commented code into .bashrc
-;; alias e="emacsclient -a \"\" -c -t "
+;; ;; put the following commented code into .bashrc
+;; ;; alias e="emacsclient -a \"\" -c -t "
 
 
 (setq gc-cons-threshold 50000000)
