@@ -492,12 +492,6 @@ narrowed."
   :config
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 
-(use-package git-gutter-fringe
-   :ensure t
-   :diminish git-gutter-mode
-   :init (setq git-gutter-fr:side 'right-fringe)
-   :config (global-git-gutter-mode t))
-
 (use-package gitconfig-mode
   :ensure t)
 
