@@ -23,8 +23,9 @@
 
 (require 'package)
 
-(setq package-archives '(("gnu"       . "http://elpa.gnu.org/packages/")
-                         ("melpa"     . "http://melpa.org/packages/")
+(setq package-archives '(("gnu"       . "https://elpa.gnu.org/packages/")
+                         ("org"       . "https://orgmode.org/elpa/")
+                         ("melpa"     . "https://melpa.org/packages/")
                         ))
 
 (package-initialize)
@@ -393,22 +394,6 @@ narrowed."
   :bind ("M-x" . smex)
   ("M-X" . smex-major-mode-commands))
 
-(use-package helm
-  :ensure t
-  :init
-  (use-package helm-config))   ;; Binds C-x c to the helm bidness.
-
-(use-package helm-swoop
-  :ensure t
-  :init
-  ;; If this value is t, split window inside the current window
-  (setq helm-swoop-split-with-multiple-windows t
-        ;; If you prefer fuzzy matching
-        helm-swoop-use-fuzzy-match t)
-  :bind
-  (("M-s s" . helm-swoop)  ;; overbind M-i ?
-   ("M-s S" . helm-multi-swoop)))
-
 (use-package recentf
   :ensure t
   :init
@@ -704,8 +689,7 @@ narrowed."
       (menu-bar-mode -1)
       (setq display-time-format "%I:%M:%S")
       (setq display-time-day-and-date t)
-      (display-time-mode 1)
-      (load-theme 'tango-dark))))
+      (display-time-mode 1))))
 
 ;; For the case that the init file runs after the frame has been created.
 ;; Call of emacs without --daemon option.
