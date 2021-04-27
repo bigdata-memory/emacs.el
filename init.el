@@ -41,7 +41,7 @@
 
 (require 'use-package)
 
-(require 'cl)
+(setq use-package-always-ensure t)
 
 (use-package dash
   :ensure t
@@ -292,8 +292,12 @@ narrowed."
 
 (use-package avy
   :ensure t
-  :init (setq avy-background t))
-
+  :bind (("M-g '" . avy-goto-char-timer)
+         ("M-g \"" . avy-resume))
+  :config
+    (setq avy-background t
+          avy-all-windows t
+          avy-timeout-seconds 0.3))
 
 ;; (global-set-key (kbd "s-h") 'avy-goto-char-timer)
 ;; (global-set-key (kbd "s-j") 'avy-goto-char-timer)
@@ -303,7 +307,7 @@ narrowed."
 ;; (global-set-key (kbd "A-j") 'avy-goto-char-timer)
 ;; (global-set-key (kbd "A-H") 'avy-pop-mark)
 ;; (global-set-key (kbd "A-J") 'avy-pop-mark)
-(global-set-key (kbd "M-g '") 'avy-goto-char-timer)
+;; (global-set-key (kbd "M-g '") 'avy-goto-char-timer)
 
 (defun unfill-paragraph ()
   "Convert a multi-line paragraph into a single line of text."
@@ -698,3 +702,122 @@ narrowed."
 ;; Call of emacs with --daemon option.
 (add-hook 'after-make-frame-functions #'my-frame-tweaks t)
 
+(use-package lsp-mode
+  :diminish (lsp-mode . "lsp")
+  :bind (:map lsp-mode-map
+    ("C-c C-d" . lsp-describe-thing-at-point))
+  :hook ((python-mode . lsp-deferred)
+    (js-mode . lsp-deferred)
+    (c-mode . lsp-deferred)
+    (c++-mode . lsp-deferred)
+    (rust-mode . lsp-deferred)
+    (java-mode . lsp-deferred)
+    (go-mode . lsp-deferred)
+    (lsp-mode . lsp-enable-which-key-integration))
+  :commands (lsp lsp-deferred)
+  :init
+    (setq lsp-auto-guess-root t       ; Detect project root
+          lsp-auto-configure t
+          lsp-log-io nil
+          lsp-enable-indentation t
+          lsp-enable-imenu t
+          lsp-keymap-prefix "C-c L"
+          lsp-file-watch-threshold 500
+          lsp-prefer-flymake nil)      ; Use lsp-ui and flycheck
+    (defun lsp-on-save-operation ()
+      (when (or (boundp 'lsp-mode)
+           (bound-p 'lsp-deferred))
+        (lsp-organize-imports)
+        (lsp-format-buffer))))
+
+(use-package lsp-ui
+  :ensure t
+  :after (lsp-mode)
+  :commands lsp-ui-doc-hide
+  :bind (:map lsp-ui-mode-map
+         ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+         ([remap xref-find-references] . lsp-ui-peek-find-references)
+         ("C-c u" . lsp-ui-imenu))
+  :init (setq lsp-ui-doc-enable t
+         lsp-ui-doc-use-webkit nil
+         lsp-ui-doc-header nil
+         lsp-ui-doc-delay 0.2
+         lsp-ui-doc-include-signature t
+         lsp-ui-doc-alignment 'at-point
+         lsp-ui-doc-use-childframe nil
+         lsp-ui-doc-border (face-foreground 'default)
+         lsp-ui-peek-enable t
+         lsp-ui-peek-show-directory t
+         lsp-ui-sideline-update-mode 'line
+         lsp-ui-sideline-enable t
+         lsp-ui-sideline-show-code-actions t
+         lsp-ui-sideline-show-hover nil
+         lsp-ui-sideline-ignore-duplicate t)
+  :config
+  (add-to-list 'lsp-ui-doc-frame-parameters '(right-fringe . 8))
+
+  ;; `C-g'to close doc
+  (advice-add #'keyboard-quit :before #'lsp-ui-doc-hide)
+
+  ;; Reset `lsp-ui-doc-background' after loading theme
+  (add-hook 'after-load-theme-hook
+       (lambda ()
+         (setq lsp-ui-doc-border (face-foreground 'default))
+         (set-face-background 'lsp-ui-doc-background
+                              (face-background 'tooltip))))
+
+  ;; WORKAROUND Hide mode-line of the lsp-ui-imenu buffer
+  ;; @see https://github.com/emacs-lsp/lsp-ui/issues/243
+  (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
+    (setq mode-line-format nil)))
+
+;; Debug
+(use-package dap-mode
+  :diminish dap-mode
+  :ensure t
+  :after (lsp-mode)
+  :functions dap-hydra/nil
+  :bind (:map lsp-mode-map
+         ("<f5>" . dap-debug)
+         ("M-<f5>" . dap-hydra))
+  :hook ((dap-mode . dap-ui-mode)
+    (dap-session-created . (lambda (&_rest) (dap-hydra)))
+    (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
+
+(use-package lsp-treemacs
+  :after (lsp-mode treemacs)
+  :ensure t
+  :commands lsp-treemacs-errors-list
+  :bind (:map lsp-mode-map
+         ("M-9" . lsp-treemacs-errors-list)))
+
+(use-package treemacs
+  :ensure t
+  :commands (treemacs)
+  :after (lsp-mode))
+
+(use-package magit)
+
+(use-package ctrlf
+  :config
+  (ctrlf-mode t))
+
+(use-package anzu)
+
+(use-package multiple-cursors
+  :bind (("C-c m l" . mc/edit-lines)
+         ("C-c m n" . mc/mark-next-like-this-symbol)
+         ("C-c m N" . mc/skip-to-next-like-this)
+         ("C-c m p" . mc/mark-previous-like-this-symbol)
+         ("C-c m P" . mc/skip-to-previous-like-this)
+         ("C-c m a" . mc/mark-all-symbols-like-this)))
+
+;; (use-package vterm
+;;   :config
+;;   (setq vterm-kill-buffer-on-exit t))
+
+;; (use-package god-mode
+;;   :demand
+;;   :bind (("<escape>" . god-mode)))
+
+(use-package rust-mode)
