@@ -821,3 +821,5 @@ narrowed."
 ;;   :bind (("<escape>" . god-mode)))
 
 (use-package rust-mode)
+
+(use-package go-mode)
