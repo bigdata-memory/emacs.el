@@ -40,6 +40,7 @@
     (load custom-file :noerror))
 
 (require 'use-package)
+(require 'dired-x)
 
 (setq use-package-always-ensure t)
 
