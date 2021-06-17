@@ -78,6 +78,8 @@
 
 ;(set-face-background 'region "blue3")
 
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
 ;; GNU Global Tags
 (use-package ggtags
   :ensure t
