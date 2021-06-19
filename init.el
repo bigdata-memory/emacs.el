@@ -323,10 +323,8 @@ narrowed."
 
 (use-package projectile
   :ensure t
-  :init (projectile-global-mode 0)
-  :bind (("C-c p s" . projectile-ag)
-         ("C-c p g" . projectile-grep)
-         ("C-c p R" . projectile-regenerate-tags)))
+  :init (projectile-global-mode +1)
+  :bind (("C-c p" . projectile-command-map)))
 
 (use-package perspective
   :ensure t
