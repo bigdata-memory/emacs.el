@@ -824,3 +824,13 @@ narrowed."
 (use-package rust-mode)
 
 (use-package go-mode)
+
+(use-package haskell-mode)
+
+(setenv "PATH"
+  (concat
+   (getenv "PATH") ":" (getenv "HOME") "/.ghcup/bin"
+  )
+)
+
+(add-to-list 'exec-path (concat (getenv "HOME") "/.ghcup/bin"))
