@@ -16,6 +16,22 @@
 ;; ;; put the following commented code into .bashrc
 ;; ;; alias e="emacsclient -a \"\" -c -t "
 
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+;;;;  Effectively replace use-package with straight-use-package
+;;; https://github.com/raxod502/straight.el/blob/develop/README.md#integration-with-use-package
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 
 (setq gc-cons-threshold 50000000)
 
@@ -23,26 +39,14 @@
 
 (require 'package)
 
-(setq package-archives '(("gnu"       . "https://elpa.gnu.org/packages/")
-                         ("org"       . "https://orgmode.org/elpa/")
-                         ("melpa"     . "https://melpa.org/packages/")
-                        ))
-
-(package-initialize)
-(package-refresh-contents)
-
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
   (when (file-exists-p custom-file)
     (load custom-file :noerror))
 
-(require 'use-package)
 (require 'dired-x)
-
-(setq use-package-always-ensure t)
 
 (use-package dash
   :ensure t
