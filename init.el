@@ -726,7 +726,7 @@ narrowed."
           lsp-log-io nil
           lsp-enable-indentation t
           lsp-enable-imenu t
-          lsp-keymap-prefix "C-c L"
+          lsp-keymap-prefix "<f8>"
           lsp-file-watch-threshold 500
           lsp-prefer-flymake nil)      ; Use lsp-ui and flycheck
     (defun lsp-on-save-operation ()
