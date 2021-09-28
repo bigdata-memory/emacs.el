@@ -37,6 +37,14 @@
 
 (setq gnutls-min-prime-bits 4096)
 
+(autoload 'run-prolog "prolog" "Start a Prolog sub-process." t)
+(autoload 'prolog-mode "prolog" "Major mode for editing Prolog programs." t)
+(autoload 'mercury-mode "prolog" "Major mode for editing Mercury programs." t)
+(setq prolog-system 'swi)
+(setq auto-mode-alist (append '(("\\.pl$" . prolog-mode)
+                                ("\\.m$" . mercury-mode))
+                               auto-mode-alist))
+
 (require 'package)
 
 (add-to-list 'package-archives
@@ -830,6 +838,8 @@ narrowed."
 (use-package go-mode)
 
 (use-package haskell-mode)
+
+(use-package format-all)
 
 (setenv "PATH"
   (concat
