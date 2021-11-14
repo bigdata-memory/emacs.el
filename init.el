@@ -497,11 +497,11 @@ narrowed."
   :config
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 
-(use-package gitconfig-mode
-  :ensure t)
+;; (use-package gitconfig-mode
+;;   :ensure t)
 
-(use-package gitignore-mode
-  :ensure t)
+;; (use-package gitignore-mode
+;;   :ensure t)
 
 ;(use-package zenburn-theme
 ;  :ensure t
