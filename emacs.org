@@ -1048,8 +1048,8 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
   (use-package dired-single
     :commands (dired dired-jump))
 
-  (use-package all-the-icons-dired
-    :hook (dired-mode . all-the-icons-dired-mode))
+  ;; (use-package all-the-icons-dired
+  ;;   :hook (dired-mode . all-the-icons-dired-mode))
 
   (use-package dired-open
     :commands (dired dired-jump)
