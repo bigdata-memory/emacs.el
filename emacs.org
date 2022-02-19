@@ -523,13 +523,38 @@ To execute or export code in =org-mode= code blocks, you'll need to set up =org-
 
 #+begin_src emacs-lisp
 
-  (with-eval-after-load 'org
-    (org-babel-do-load-languages
-        'org-babel-load-languages
-        '((emacs-lisp . t)
-        (python . t) (shell . t)))
+    (with-eval-after-load 'org
+      (org-babel-do-load-languages
+          'org-babel-load-languages
+          '((emacs-lisp . t)
+            (python . t)
+            (shell . t)
+            (java  . t)
+            (rust . t)
+            (go . t)
+            (c . t)
+            (R . t)
+            (eshell . t)
+            (haskell . t)
+            (emacs-list . t)
+            (ditaa . t)
+            (awk . t)
+            (calc . t)
+            (gnuplot . t)
+            (screen . t)
+            (dot . t)
+            (js . t)
+            (latex . t)
+            (lua . t)
+            (org . t)
+            (sed . t)
+            (sh . t)
+            (sql . t)
+            (sqlite . t)
+            (octave . t)
+            (lisp . t)))
 
-    (push '("conf-unix" . conf-unix) org-src-lang-modes))
+      (push '("conf-unix" . conf-unix) org-src-lang-modes))
 
 #+end_src
 
