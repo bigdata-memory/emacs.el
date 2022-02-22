@@ -545,6 +545,7 @@ To execute or export code in =org-mode= code blocks, you'll need to set up =org-
           (octave . t)
           (go . t)
           (rust . t)
+          (screen . t)
           (shell . t)))
 
     (push '("conf-unix" . conf-unix) org-src-lang-modes))
