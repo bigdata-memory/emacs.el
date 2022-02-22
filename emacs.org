@@ -529,6 +529,8 @@ To execute or export code in =org-mode= code blocks, you'll need to set up =org-
         '((emacs-lisp . t)
           (python . t)
           (R . t)
+          (plantuml . t)
+          (org . t)
           (eshell . t)
           (sqlite . t)
           (haskell . t)
