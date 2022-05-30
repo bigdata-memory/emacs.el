@@ -634,7 +634,7 @@ The =which-key= integration adds helpful descriptions of the various keys so you
     :commands (lsp lsp-deferred)
     :hook (lsp-mode . efs/lsp-mode-setup)
     :init
-    (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
+    (setq lsp-keymap-prefix "C-c C-l")  ;; Or 'C-l', 's-l'
     :config
     (lsp-enable-which-key-integration t))
 
