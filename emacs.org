@@ -636,7 +636,7 @@ The =which-key= integration adds helpful descriptions of the various keys so you
     :commands (lsp lsp-deferred)
     :hook (lsp-mode . efs/lsp-mode-setup)
     :init
-    (setq lsp-keymap-prefix "C-c C-l")  ;; Or 'C-l', 's-l'
+    (setq lsp-keymap-prefix "C-c C-M-SPC")  ;; Or 'C-l', 's-l'
     :config
     (lsp-enable-which-key-integration t))
 
@@ -709,11 +709,11 @@ Try these commands with =M-x=:
     (dap-node-setup) ;; Automatically installs Node debug adapter if needed
 
     ;; Bind `C-c l d` to `dap-hydra` for easy access
-    (general-define-key
-      :keymaps 'lsp-mode-map
-      :prefix lsp-keymap-prefix
-      "d" '(dap-hydra t :wk "debugger")))
-
+    ;; (general-define-key
+    ;;   :keymaps 'lsp-mode-map
+    ;;   :prefix lsp-keymap-prefix
+    ;;   "d" '(dap-hydra t :wk "debugger"))
+    )
 #+end_src
 
 *** TypeScript
@@ -1285,5 +1285,8 @@ Dial the GC threshold back down so that garbage collection happens more frequent
  'eshell-mode-hook
  (lambda ()
    (setq pcomplete-cycle-completions nil)))
+(add-hook 'prog-mode-hook 'lsp-deferred)
+;; Less chatty for unsupported modes
+(setq lsp-warn-no-matched-clients nil)
 
 #+end_src
