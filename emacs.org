@@ -240,6 +240,9 @@ I am using the [[https://github.com/tonsky/FiraCode][Fira Code]] and [[https://f
     :config
     (ivy-mode 1))
 
+  (use-package ivy-hydra
+    :after ivy)
+
   (use-package ivy-rich
     :after ivy
     :init
