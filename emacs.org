@@ -850,6 +850,10 @@ We also use [[https://github.com/sebastiencs/company-box][company-box]] to furth
   (use-package company-box
     :hook (company-mode . company-box-mode))
 
+  (use-package company-tabnine
+    :ensure t
+    :init (add-to-list 'company-backends #'company-tabnine))
+
 #+end_src
 
 ** Projectile
