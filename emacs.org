@@ -614,6 +614,27 @@ It depends on a recent version of Org that causes mixed installation of =Org-mod
 
 * Development
 
+** IDE
+
+*** treemacs
+
+#+begin_src emacs-lisp
+  (use-package treemacs
+    :defer t
+    :config
+    (treemacs-tag-follow-mode)
+    :bind
+    (:map global-map
+          ("C-c C-M-t s" . treemacs-select-window)
+          ("C-c C-M-t t" . treemacs)
+          ("C-c C-M-t f" . treemacs-find-tag))
+    (:map treemacs-mode-map
+          ("/" . treemacs-advanced-helpful-hydra)))
+
+  (use-package treemacs-projectile
+    :after (treemacs projectile))
+
+#+end_src
 ** Languages
 
 *** IDE Features with lsp-mode
@@ -670,7 +691,7 @@ This package is built on the [[https://github.com/Alexander-Miller/treemacs][tre
 #+begin_src emacs-lisp
 
   (use-package lsp-treemacs
-    :after lsp)
+    :after (lsp treemacs))
 
 #+end_src
 
