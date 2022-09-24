@@ -854,7 +854,7 @@ We also use [[https://github.com/sebastiencs/company-box][company-box]] to furth
     :hook (company-mode . company-box-mode))
 
   (use-package company-tabnine
-    :ensure t
+    :after company
     :init (add-to-list 'company-backends #'company-tabnine))
 
 #+end_src
