@@ -1302,6 +1302,19 @@ Dial the GC threshold back down so that garbage collection happens more frequent
                   (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
                     (ggtags-mode 1)))))
 
+  (use-package counsel-gtags
+     :after (counsel ggtags)
+     :commands counsel-gtags-mode
+     :bind (:map
+            counsel-gtags-mode-map
+            ("M-." . counsel-gtags-dwim)
+            ("M-," . counsel-gtags-go-backward))
+     :hook ((swift-mode . counsel-gtags-mode)
+            (swift-mode . ggtags-mode)))
+
+  (use-package undo-tree)
+  (global-undo-tree-mode)
+
   (require 'dired-x)
   (global-set-key (kbd "C-x C-b") 'ibuffer)
   (setq-default c-default-style "linux")
