@@ -1322,7 +1322,9 @@ Dial the GC threshold back down so that garbage collection happens more frequent
     :init (google-this-mode))
 
   (use-package smart-mode-line
-    :init (sml/setup))
+    :init
+    (setq sml/no-confirm-load-theme t)
+    (sml/setup))
 
   (require 'dired-x)
   (global-set-key (kbd "C-x C-b") 'ibuffer)
