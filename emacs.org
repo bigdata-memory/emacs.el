@@ -1337,4 +1337,7 @@ Dial the GC threshold back down so that garbage collection happens more frequent
   ;; Less chatty for unsupported modes
   (setq lsp-warn-no-matched-clients nil)
 
+  (use-package dirvish)
+  (dirvish-override-dired-mode)
+
 #+end_src
