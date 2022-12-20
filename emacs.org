@@ -621,6 +621,7 @@ It depends on a recent version of Org that causes mixed installation of =Org-mod
   (use-package ivy-bibtex)
   (use-package pdf-tools)
   (use-package org-ref)
+  (use-package org-ref-prettify)
 #+END_SRC
 
 * Development
