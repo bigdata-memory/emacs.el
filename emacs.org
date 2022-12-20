@@ -1282,14 +1282,19 @@ Dial the GC threshold back down so that garbage collection happens more frequent
 
   (use-package recentf
     :init
-    (setq recentf-max-menu-items 25
+    (setq recentf-max-menu-items 50
           recentf-auto-cleanup 'never
           recentf-keep '(file-remote-p file-readable-p))
     (recentf-mode 1)
     (let ((last-ido "~/.emacs.d/ido.last"))
       (when (file-exists-p last-ido)
         (delete-file last-ido)))
-    :bind ("C-c f r" . recentf-open-files))
+    :bind ("C-c f r" . recentf-open-files)
+    :hook (after-init . recentf-mode))
+
+  (use-package init-open-recentf
+      :after recentf
+      :config (init-open-recentf))
 
   (use-package smex
     :init (smex-initialize)
