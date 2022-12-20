@@ -615,6 +615,14 @@ It depends on a recent version of Org that causes mixed installation of =Org-mod
   ;;               ("C-c n l" . org-roam-buffer-toggle)))))
 #+end_src
 
+** Ref
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ivy-bibtex)
+  (use-package pdf-tools)
+  (use-package org-ref)
+#+END_SRC
+
 * Development
 
 ** IDE
@@ -636,6 +644,11 @@ It depends on a recent version of Org that causes mixed installation of =Org-mod
 
   (use-package treemacs-projectile
     :after (treemacs projectile))
+
+  (use-package treemacs-magit
+    :after (treemacs magit))
+
+  (use-package treemacs-tab-bar)
 
 #+end_src
 ** Languages
@@ -1321,6 +1334,10 @@ Dial the GC threshold back down so that garbage collection happens more frequent
     :init
     (setq sml/no-confirm-load-theme t)
     (sml/setup))
+
+  (use-package ox-reveal)
+
+  (use-package htmlize)
 
   (require 'dired-x)
   (global-set-key (kbd "C-x C-b") 'ibuffer)
