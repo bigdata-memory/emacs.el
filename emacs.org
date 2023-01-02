@@ -1381,4 +1381,24 @@ Dial the GC threshold back down so that garbage collection happens more frequent
   (use-package dirvish)
   (dirvish-override-dired-mode)
 
+  ;; hightlight the active window
+  ;; Use different colors of mode line for the active and inactive windows:
+  (custom-set-faces
+   '(mode-line ((t (:background "dim gray" :foreground "white"))))
+   '(mode-line-inactive ((t (:background nil)))))
+  ;; Highlight the current line where the point is in active window:
+
+  (global-hl-line-mode 1)
+  ;; underline the current line
+  (set-face-attribute hl-line-face nil)
+
+  ;; Use different background colors for the active and inactive windows:
+  (defun highlight-selected-window ()
+    "Highlight selected window with a different background color."
+    (walk-windows (lambda (w)
+                    (unless (eq w (selected-window))
+                      (with-current-buffer (window-buffer w)
+                        (buffer-face-set '(:background "#111"))))))
+    (buffer-face-set 'default))
+
 #+end_src
