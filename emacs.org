@@ -1401,4 +1401,8 @@ Dial the GC threshold back down so that garbage collection happens more frequent
                         (buffer-face-set '(:background "#111"))))))
     (buffer-face-set 'default))
 
+  (use-package beacon
+    :init
+    (beacon-mode 1))
+
 #+end_src
