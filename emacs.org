@@ -77,6 +77,18 @@ Emacs has a built in package manager but it doesn't make it easy to automaticall
   (require 'use-package)
   (setq use-package-always-ensure t)
 
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+        (bootstrap-version 6))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
 #+end_src
 
 ** Automatic Package Updates
@@ -757,6 +769,18 @@ Try these commands with =M-x=:
        (add-hook 'c-mode-hook 'eglot-ensure)
        (add-hook 'c++-mode-hook 'eglot-ensure))
    #+end_src
+
+*** Lean4
+#+begin_src emacs-lisp
+  (use-package lean4-mode
+    :straight (lean4-mode
+               :type git
+               :host github
+               :repo "leanprover/lean4-mode"
+               :files ("*.el" "data"))
+    ;; to defer loading the package until required
+    :commands (lean4-mode))
+#+end_src
 
 *** Debugging with dap-mode
 
