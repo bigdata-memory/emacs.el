@@ -1119,7 +1119,7 @@ For more thoughts on Eshell, check out these articles by Pierre Neidhardt:
       (setq eshell-destroy-buffer-when-process-dies t)
       (setq eshell-visual-commands '("htop" "zsh" "vim")))
 
-    (eshell-git-prompt-use-theme 'multiline))
+    (eshell-git-prompt-use-theme 'multiline2))
 
 
 #+end_src
