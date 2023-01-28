@@ -137,10 +137,10 @@ This section configures basic UI settings that remove unneeded elements to make 
 
   (setq inhibit-startup-message t)
 
-  (scroll-bar-mode -1)        ; Disable visible scrollbar
+  ;;(scroll-bar-mode -1)        ; Disable visible scrollbar
   (tool-bar-mode -1)          ; Disable the toolbar
   (tooltip-mode -1)           ; Disable tooltips
-  (set-fringe-mode 10)        ; Give some breathing room
+  ;;(set-fringe-mode 10)        ; Give some breathing room
 
   (menu-bar-mode -1)            ; Disable the menu bar
 
@@ -1345,7 +1345,7 @@ Dial the GC threshold back down so that garbage collection happens more frequent
       (add-hook hook (lambda () (flyspell-mode -1))))
 
     :config
-    (setq ispell-program-name "/usr/bin/aspell"
+    (setq
           ispell-local-dictionary "en_US"
           ispell-dictionary "american" ; better for aspell
           ispell-extra-args '("--sug-mode=ultra" "--lang=en_US")
