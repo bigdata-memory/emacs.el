@@ -21,6 +21,10 @@ The following variables are used to tweak some of the configuration pieces for u
   ;; Make frame transparency overridable
   (defvar efs/frame-transparency '(90 . 90))
 
+  (when (eq system-type 'darwin)
+    (setq insert-directory-program "/opt/homebrew/bin/gls")
+    (setq image-types (cons 'svg image-types)))
+
 #+end_src
 
 * Tips for Use
@@ -1461,4 +1465,6 @@ Dial the GC threshold back down so that garbage collection happens more frequent
     :init
     (beacon-mode 1))
 
+  (use-package docker-tramp
+    :init)
 #+end_src
