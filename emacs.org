@@ -74,6 +74,8 @@ Emacs has a built in package manager but it doesn't make it easy to automaticall
   (unless package-archive-contents
     (package-refresh-contents))
 
+  (setq auto-package-update-delete-old-versions t)
+
     ;; Initialize use-package on non-Linux platforms
   (unless (package-installed-p 'use-package)
     (package-install 'use-package))
