@@ -1308,37 +1308,6 @@ Dial the GC threshold back down so that garbage collection happens more frequent
   (use-package comment-dwim-2
     :bind ("M-;" . comment-dwim-2))
 
-  (use-package linum-relative
-    :config
-    (defun linum-new-mode ()
-      "If line numbers aren't displayed, then display them.
-       Otherwise, toggle between absolute and relative numbers."
-      (interactive)
-      (if linum-mode
-          (linum-relative-toggle)
-        (linum-mode 1)))
-
-    :bind ("A-k" . linum-new-mode)
-    ("s-k" . linum-new-mode))   ;; For Linux
-
-  (use-package linum
-    :init
-    (add-hook 'prog-mode-hook 'linum-mode)
-    (add-hook 'linum-mode-hook (lambda () (set-face-attribute 'linum nil :height 110)))
-
-    :config
-    (defun linum-fringe-toggle ()
-      "Toggles the line numbers as well as the fringe."    (interactive)
-      (cond (linum-mode (fringe-mode '(0 . 0))
-                        (linum-mode -1))
-            (t          (fringe-mode '(8 . 0))
-                        (linum-mode 1))))
-    (setq linum-format "%4d \u2502 ")
-    :bind (("A-C-k"   . linum-mode)
-           ("s-C-k"   . linum-mode)
-           ("A-C-M-k" . linum-fringe-toggle)
-           ("s-C-M-k" . linum-fringe-toggle)))
-
   (use-package flyspell
     :diminish flyspell-mode
     :init
