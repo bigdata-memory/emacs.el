@@ -70,6 +70,7 @@ Emacs has a built in package manager but it doesn't make it easy to automaticall
   (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                            ("elpa" . "https://elpa.gnu.org/packages/")))
 
+  (setq load-prefer-newer t)
   (package-initialize)
   (unless package-archive-contents
     (package-refresh-contents))
@@ -113,6 +114,12 @@ You can also use =M-x auto-package-update-now= to update right now!
     :config
     (auto-package-update-maybe)
     (auto-package-update-at-time "09:00"))
+
+  (use-package auto-compile
+    :demand t
+    :config
+    (auto-compile-on-load-mode)
+    (auto-compile-on-save-mode))
 
 #+end_src
 
