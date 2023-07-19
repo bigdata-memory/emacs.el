@@ -1445,4 +1445,5 @@ Dial the GC threshold back down so that garbage collection happens more frequent
     :init
     (beacon-mode 1))
 
+  (use-package sqlite3)
 #+end_src
