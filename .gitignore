@@ -1,3 +1,8 @@
 *~
 custom.el
 init.el
+.last-package-update-day
+eln-cache/
+elpa/
+straight/
+var/
