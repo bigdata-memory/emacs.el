@@ -1389,8 +1389,8 @@ Dial the GC threshold back down so that garbage collection happens more frequent
   (use-package highlight-symbol
     :init (highlight-symbol-mode))
 
-  (use-package google-this
-    :init (google-this-mode))
+  ;; (use-package google-this
+  ;;   :init (google-this-mode))
 
   (use-package smart-mode-line
     :init
