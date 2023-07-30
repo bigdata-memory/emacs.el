@@ -1399,7 +1399,8 @@ Dial the GC threshold back down so that garbage collection happens more frequent
 
   (use-package ox-reveal)
 
-  (use-package docker-tramp)
+  (unless (>= emacs-major-version 29)
+    (use-package docker-tramp))
 
   (use-package htmlize)
 
