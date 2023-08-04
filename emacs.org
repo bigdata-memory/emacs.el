@@ -697,6 +697,12 @@ It depends on a recent version of Org that causes mixed installation of =Org-mod
 
   (use-package treemacs-tab-bar)
 
+  (use-package treesit-auto
+    :demand t
+    :config
+    (setq treesit-auto-install 'prompt)
+    (global-treesit-auto-mode))
+
 #+end_src
 ** Languages
 
