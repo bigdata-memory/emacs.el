@@ -1453,4 +1453,7 @@ Dial the GC threshold back down so that garbage collection happens more frequent
     (beacon-mode 1))
 
   (use-package sqlite3)
+  (defun my-org-confirm-babel-evaluate (lang body)
+    (not (string= lang "plantuml")))
+  (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
 #+end_src
